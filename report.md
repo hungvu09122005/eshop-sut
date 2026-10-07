@@ -63,3 +63,17 @@ Output:
 
 Bước 2: Chọn giá trị đại diện cho miền.
  - Trạng thái: Chờ xác nhận.
+
+Bước 3: thiết kế các test cases theo Domain testing.
+
+| ID |Trạng thái |Expected result 
+| --- | --- | ---|
+| TC-FR-11-1| Chờ xác nhận | Hủy thành công.|
+| TC-FR-11-2| Đã xác nhận | Hủy thành công.|
+| TC-FR-11-3| Đang giao | Không thể hủy.|
+| TC-FR-11-4| Đã giao | Không thể hủy.|
+| TC-FR-11-5| Đã hủy | Không thể hủy.|
+
+
+Bước 4: Rút gọn test cases theo Domain testing.
+  - Không cần rút gọn test case.
