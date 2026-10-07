@@ -201,10 +201,9 @@ Tôi không sử dụng bất kỳ sự hỗ trợ nào từ AI trong bài tập
  - https://github.com/hungvu09122005/eshop-sut
 
 ## Phụ lục 3: Link Github issues
- - https://github.com/hungvu09122005/eshop-sut/issues
+ - https://github.com/KTPM2026/HW2/issues
 
 # TÀI LIỆU THAM KHẢO
- - https://github.com/KTPM2026/HW2/issues
 
 \[1\] T. T. B. Hạnh, “V02 2 Domain Testing 1 1” Video bài giảng, Software Testing, HCMUS, Ho Chi Minh City, Vietnam, 2026. [Online]. Available:  <https://www.youtube.com/watch?v=jMGPX2naI-4>
 

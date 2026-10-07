@@ -21,4 +21,4 @@ Product detail view / Functional / Domain testing
 - Hiển thị thông báo lỗi "Số lượng phải là số nguyên dương".
 
 ## Status / Related bugs
-Fail / #16
+Fail / Blocked

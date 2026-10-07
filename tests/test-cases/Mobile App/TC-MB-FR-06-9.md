@@ -20,4 +20,4 @@ Product detail view / Functional / Domain testing
 - Hiển thị thông báo "Số lượng không hợp lệ.".
 
 ## Status / Related bugs
-Fail / #16
+Fail / Blocked

@@ -14,8 +14,8 @@
 - Số lượng ca kiểm thử đã thiết kế: 53
 - Số lượng ca kiểm thử đã thực thi: 53
 - Số lượng ca kiểm thử đạt: 29
-- Số lượng ca kiểm thử không đạt: 24
-- Số lượng ca kiểm thử chưa thực thi: 0
+- Số lượng ca kiểm thử không đạt: 15
+- Số lượng ca kiểm thử chưa thực thi: 9
 
 # Các lỗi tìm được.
 Được ghi chi tiết trên Github Issues: https://github.com/KTPM2026/HW2/issues
@@ -35,4 +35,3 @@
 - [BUG][FR-17] Tạo mã giảm giá với giá trị dưới biên dưới là -1.00001
 - [BUG][FR-17] Tạo mã giảm giá với đơn tối thiểu tại biên dưới là -1
 - [BUG][FR-17] Tạo mã giảm giá với ngày hết hạn trước ngày hiện tại là 2026-10-06
-- [BUG][MOBILE-FR-06] Không hiển thị trang product để có thể vào trang detail

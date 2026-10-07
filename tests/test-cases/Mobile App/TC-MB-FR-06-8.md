@@ -22,4 +22,4 @@ Product detail view / Functional / Domain testing
 - Số lượng hiển thị 1.  
 
 ## Status / Related bugs
-Fail / #16
+Fail / Blocked
