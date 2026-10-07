@@ -181,3 +181,33 @@ Ta có giá trị biên ở
   
 Các test cases tương tự như ở mục 1.
 
+## 5. Mandatory Disclosure
+
+Tôi không sử dụng bất kỳ sự hỗ trợ nào từ AI trong bài tập này.
+
+# Phụ lục
+
+[Phụ lục 1: AI Audit Report](#phụ-lục-1-ai-audit-report)
+
+[Phụ lục 2: Link Github project](#phụ-lục-2-link-github-project)
+
+[Phụ lục 3: Link Github issues](#phụ-lục-3-link-github-issues)
+
+## Phụ lục 1: AI Audit Report
+
+Tôi không sử dụng bất kỳ sự hỗ trợ nào từ AI trong bài tập này.
+
+## Phụ lục 2: Link Github project
+ - https://github.com/hungvu09122005/eshop-sut
+
+## Phụ lục 3: Link Github issues
+ - https://github.com/hungvu09122005/eshop-sut/issues
+
+# TÀI LIỆU THAM KHẢO
+ - https://github.com/KTPM2026/HW2/issues
+
+\[1\] T. T. B. Hạnh, “V02 2 Domain Testing 1 1” Video bài giảng, Software Testing, HCMUS, Ho Chi Minh City, Vietnam, 2026. [Online]. Available:  <https://www.youtube.com/watch?v=jMGPX2naI-4>
+
+\[2\] T. T. B. Hạnh, 03 - github_bug_management, Slide bài giảng môn Kiểm thử phần mềm, Khoa Công nghệ Thông tin, Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM, 2026.
+
+\[3\] T. T. B. Hạnh, 03 - github_testcase_management, Slide bài giảng môn Kiểm thử phần mềm, Khoa Công nghệ Thông tin, Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM, 2026. 
