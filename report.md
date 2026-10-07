@@ -51,3 +51,15 @@ Bước 5: thiết kế các test cases theo BVA 3 points.
 | TC-FR-06-7| 2 | Thêm giỏ hàng thành công.| 
 | TC-FR-06-8| 1 | Thêm giỏ hàng thành công.| 
 | TC-FR-06-9| 0 | Số lượng không hợp lệ.| 
+
+## 2. FR-11: Order history view (user).
+
+Bước 1: xác định các output và xác định miền.
+Input:
+ - Trạng thái: Chờ xác nhận, Đã xác nhận, Đang giao, Đã giao, Đã hủy.
+Output:
+ - Hủy thành công.
+ - Không thể hủy.
+
+Bước 2: Chọn giá trị đại diện cho miền.
+ - Trạng thái: Chờ xác nhận.
