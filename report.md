@@ -43,3 +43,11 @@ Bước 3: thiết kế các test cases theo Domain testing.
 
 Bước 4: Rút gọn test cases theo Domain testing.
   - Không cần rút gọn test case.
+
+Bước 5: thiết kế các test cases theo BVA 3 points.
+  - Ta có giá trị biên ở số lượng là 1. Do đó, ta có test case.
+| ID |Số lượng |Expected result 
+| --- | --- | ---|
+| TC-FR-06-7| 2 | Thêm giỏ hàng thành công.| 
+| TC-FR-06-8| 1 | Thêm giỏ hàng thành công.| 
+| TC-FR-06-9| 0 | Số lượng không hợp lệ.| 
