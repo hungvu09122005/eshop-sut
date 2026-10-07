@@ -155,3 +155,25 @@ Bước 4: Rút gọn test cases theo Domain testing
 | TC-FR-17-17| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | "a" | Tạo thất bại.| 
 | TC-FR-17-18| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | "@" | Tạo thất bại.| 
 
+Bước 5: thiết kế các test cases theo BVA 3 points.
+Ta có giá trị biên ở
+  - Giá trị: 0.00001.
+  - Đơn tối thiểu: 0.
+  - Hết hạn: 2026-10-7, giả sử ngày hiện tại là 2026-10-07.
+  - Giới hạn/người: 1.
+
+| ID |Mã |Loại |Giá trị |Đơn tối thiểu |Hết hạn |Giới hạn/người |Expected result 
+| --- | --- | --- | --- | --- | --- | --- | ---|
+| TC-FR-17-19| "VIP50" | phần trăm | 0.00001 | 100000 | 2099-12-31 | 10 | Tạo thành công.|
+| TC-FR-17-20| "VIP50" | phần trăm | 1.00001 | 100000 | 2099-12-31 | 10 | Tạo thành công.|
+| TC-FR-17-21| "VIP50" | phần trăm | -1.00001 | 100000 | 2099-12-31 | 10 | Tạo thất bại.|
+| TC-FR-17-22| "VIP50" | phần trăm | 50 | 0 | 2099-12-31 | 10 | Tạo thành công.|
+| TC-FR-17-23| "VIP50" | phần trăm | 50 | 1 | 2099-12-31 | 10 | Tạo thành công.|
+| TC-FR-17-24| "VIP50" | phần trăm | 50 | -1 | 2099-12-31 | 10 | Tạo thất bại.|
+| TC-FR-17-25| "VIP50" | phần trăm | 50 | 100000 | 2026-10-7 | 10 | Tạo thành công.|
+| TC-FR-17-26| "VIP50" | phần trăm | 50 | 100000 | 2026-10-8 | 10 | Tạo thành công.|
+| TC-FR-17-27| "VIP50" | phần trăm | 50 | 100000 | 2026-10-6 | 10 | Tạo thất bại.|
+| TC-FR-17-28| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 1 | Tạo thành công.|
+| TC-FR-17-29| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 2 | Tạo thành công.|
+| TC-FR-17-30| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 0 | Tạo thất bại.|
+
