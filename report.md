@@ -104,3 +104,54 @@ Bước 2: Chọn giá trị đại diện cho miền.
   - Hết hạn: 2099-12-31
   - Giới hạn/người: 10
 
+Bước 3: thiết kế các test cases.
+
+| ID |Mã |Loại |Giá trị |Đơn tối thiểu |Hết hạn |Giới hạn/người |Expected result 
+| --- | --- | --- | --- | --- | --- | --- | ---|
+| TC-FR-17-1| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 10 | Tạo thành công.| 
+| TC-FR-17-2| "" | phần trăm | 50 | 100000 | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-3| "VIP50" | cố định | 50000 | 100000 | 2099-12-31 | 10 | Tạo thành công.| 
+| TC-FR-17-4| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 10 | Tạo thành công.|
+| TC-FR-17-5| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 10 | Tạo thành công.|  
+| TC-FR-17-6| VIP50 | phần trăm | "" | 100000 | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-7| VIP50 | phần trăm | -50 | 100000 | 2099-12-31 | 10 | Tạo thất bại.|
+| TC-FR-17-8| VIP50 | phần trăm | "a" | 100000 | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-9| VIP50 | phần trăm | "@" | 100000 | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-10| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 10 | Tạo thành công.| 
+| TC-FR-17-11| VIP50 | phần trăm | 50 | "" | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-12| VIP50 | phần trăm | 50 | -100000 | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-13| VIP50 | phần trăm | 50 | "a" | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-14| VIP50 | phần trăm | 50 | "@" | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-15| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 10 | Tạo thành công.| 
+| TC-FR-17-16| VIP50 | phần trăm | 50 | 100000 | "" | 10 | Tạo thất bại.| 
+| TC-FR-17-17| VIP50 | phần trăm | 50 | 100000 | 2000-01-01 | 10 | Tạo thất bại.| 
+| TC-FR-17-18| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 10 | Tạo thành công.| 
+| TC-FR-17-19| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | "" | Tạo thất bại.| 
+| TC-FR-17-20| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | -10 | Tạo thất bại.| 
+| TC-FR-17-21| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | 10.5 | Tạo thất bại.| 
+| TC-FR-17-22| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | "a" | Tạo thất bại.| 
+| TC-FR-17-23| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | "@" | Tạo thất bại.| 
+
+Bước 4: Rút gọn test cases theo Domain testing
+
+| ID |Mã |Loại |Giá trị |Đơn tối thiểu |Hết hạn |Giới hạn/người |Expected result 
+| --- | --- | --- | --- | --- | --- | --- | ---|
+| TC-FR-17-1| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 10 | Tạo thành công.| 
+| TC-FR-17-2| "" | phần trăm | 50 | 100000 | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-3| "VIP50" | cố định | 50000 | 100000 | 2099-12-31 | 10 | Tạo thành công.|
+| TC-FR-17-4| VIP50 | phần trăm | "" | 100000 | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-5| VIP50 | phần trăm | -50 | 100000 | 2099-12-31 | 10 | Tạo thất bại.|
+| TC-FR-17-6| VIP50 | phần trăm | "a" | 100000 | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-7| VIP50 | phần trăm | "@" | 100000 | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-8| VIP50 | phần trăm | 50 | "" | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-9| VIP50 | phần trăm | 50 | -100000 | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-10| VIP50 | phần trăm | 50 | "a" | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-11| VIP50 | phần trăm | 50 | "@" | 2099-12-31 | 10 | Tạo thất bại.| 
+| TC-FR-17-12| VIP50 | phần trăm | 50 | 100000 | "" | 10 | Tạo thất bại.| 
+| TC-FR-17-13| VIP50 | phần trăm | 50 | 100000 | 2000-01-01 | 10 | Tạo thất bại.| 
+| TC-FR-17-14| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | "" | Tạo thất bại.| 
+| TC-FR-17-15| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | -10 | Tạo thất bại.| 
+| TC-FR-17-16| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | 10.5 | Tạo thất bại.| 
+| TC-FR-17-17| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | "a" | Tạo thất bại.| 
+| TC-FR-17-18| VIP50 | phần trăm | 50 | 100000 | 2099-12-31 | "@" | Tạo thất bại.| 
+
