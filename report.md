@@ -81,3 +81,26 @@ Bước 4: Rút gọn test cases theo Domain testing.
 Bước 5: thiết kế các test cases theo BVA 3 points.
   - Không thể dùng BVA vì ở tính năng này không có miền giá trị liên tục để xác định biên.
 
+## 3. Web Admin - FR-17: Coupon management (CRUD)**
+
+Bước 1: xác định các output và xác định miền.
+Input:
+  - Mã: có giá trị, rỗng
+  - Loại: phần trăm, cố định
+  - Giá trị: >0, <=0, rỗng, ký tự đặc biệt, chữ cái.
+  - Đơn tối thiểu: >=0, <0, rỗng, ký tự đặc biệt, chữ cái.
+  - Hết hạn: Ngày >= hiện tại, ngày quá khứ, rỗng.
+  - Giới hạn/người: nguyên >0, nguyên <=0, số thực, rỗng, ký tự đặc biệt, chữ cái.
+
+Output:
+  - Tạo thành công
+  - Tạo thất bại
+
+Bước 2: Chọn giá trị đại diện cho miền.
+  - Mã: VIP50
+  - Loại: phần trăm
+  - Giá trị: 50
+  - Đơn tối thiểu: 100000
+  - Hết hạn: 2099-12-31
+  - Giới hạn/người: 10
+
