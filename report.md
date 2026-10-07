@@ -177,3 +177,7 @@ Ta có giá trị biên ở
 | TC-FR-17-29| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 2 | Tạo thành công.|
 | TC-FR-17-30| "VIP50" | phần trăm | 50 | 100000 | 2099-12-31 | 0 | Tạo thất bại.|
 
+## 4. Mobile App - FR-06: Product detail view**
+  
+Các test cases tương tự như ở mục 1.
+
