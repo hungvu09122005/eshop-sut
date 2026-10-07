@@ -77,3 +77,7 @@ Bước 3: thiết kế các test cases theo Domain testing.
 
 Bước 4: Rút gọn test cases theo Domain testing.
   - Không cần rút gọn test case.
+
+Bước 5: thiết kế các test cases theo BVA 3 points.
+  - Không thể dùng BVA vì ở tính năng này không có miền giá trị liên tục để xác định biên.
+
