@@ -29,3 +29,17 @@ Output:
 
 Bước 2: Chọn giá trị đại diện cho miền.
   - Số lượng: 5
+
+Bước 3: thiết kế các test cases theo Domain testing.
+
+| ID |Số lượng |Expected result 
+| --- | --- | ---|
+| TC-FR-06-1| 5 | Thêm giỏ hàng thành công.|
+| TC-FR-06-2| -5 | Số lượng không hợp lệ.|
+| TC-FR-06-3| 5.5 | Số lượng không hợp lệ.|
+| TC-FR-06-4| "a" | Số lượng không hợp lệ.|
+| TC-FR-06-5| "@" | Số lượng không hợp lệ.|
+| TC-FR-06-6| "" | Số lượng không hợp lệ.|
+
+Bước 4: Rút gọn test cases theo Domain testing.
+  - Không cần rút gọn test case.
