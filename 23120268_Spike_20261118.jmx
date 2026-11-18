@@ -1,0 +1,3069 @@
+<?xml version="1.0" ?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="EShop_Spike_Test_23120268" enabled="true">
+      <stringProp name="TestPlan.comments">EShop Performance Spike Testing Plan - HW05</stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="BASE_URL" elementType="Argument">
+            <stringProp name="Argument.name">BASE_URL</stringProp>
+            <stringProp name="Argument.value">localhost</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="PORT" elementType="Argument">
+            <stringProp name="Argument.name">PORT</stringProp>
+            <stringProp name="Argument.value">3000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="BASELINE_THREADS" elementType="Argument">
+            <stringProp name="Argument.name">BASELINE_THREADS</stringProp>
+            <stringProp name="Argument.value">${__P(baseline_threads,20)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="BASELINE_RAMPUP" elementType="Argument">
+            <stringProp name="Argument.name">BASELINE_RAMPUP</stringProp>
+            <stringProp name="Argument.value">${__P(baseline_rampup,20)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="TOTAL_DURATION" elementType="Argument">
+            <stringProp name="Argument.name">TOTAL_DURATION</stringProp>
+            <stringProp name="Argument.value">${__P(total_duration,390)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SPIKE_THREADS" elementType="Argument">
+            <stringProp name="Argument.name">SPIKE_THREADS</stringProp>
+            <stringProp name="Argument.value">${__P(spike_threads,130)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SPIKE_RAMPUP" elementType="Argument">
+            <stringProp name="Argument.name">SPIKE_RAMPUP</stringProp>
+            <stringProp name="Argument.value">${__P(spike_rampup,15)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SPIKE_DURATION" elementType="Argument">
+            <stringProp name="Argument.name">SPIKE_DURATION</stringProp>
+            <stringProp name="Argument.value">${__P(spike_duration,75)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SPIKE_DELAY" elementType="Argument">
+            <stringProp name="Argument.name">SPIKE_DELAY</stringProp>
+            <stringProp name="Argument.value">${__P(spike_delay,120)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments"/>
+        </elementProp>
+        <stringProp name="HTTPSampler.domain">${BASE_URL}</stringProp>
+        <stringProp name="HTTPSampler.port">${PORT}</stringProp>
+        <stringProp name="HTTPSampler.protocol">http</stringProp>
+        <stringProp name="HTTPSampler.connect_timeout">5000</stringProp>
+        <stringProp name="HTTPSampler.response_timeout">10000</stringProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager (Global JSON)" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Content-Type</stringProp>
+            <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Accept</stringProp>
+            <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - Users" enabled="true">
+        <stringProp name="delimiter">,</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="filename">data/users.csv</stringProp>
+        <boolProp name="ignoreFirstLine">true</boolProp>
+        <boolProp name="quotedData">true</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">user_email,user_password,user_name,user_phone,user_address</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config - Products" enabled="true">
+        <stringProp name="delimiter">,</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="filename">data/products.csv</stringProp>
+        <boolProp name="ignoreFirstLine">true</boolProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">product_id,product_name,product_price,quantity</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG_01_Normal_Load_20VU" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <intProp name="LoopController.loops">-1</intProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${BASELINE_THREADS}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${BASELINE_RAMPUP}</stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">${TOTAL_DURATION}</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_01_Login" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /api/login" enabled="true">
+            
+            
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              
+              
+              <collectionProp name="Arguments.arguments">
+                
+                
+                <elementProp name="" elementType="HTTPArgument">
+                  
+                  
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  
+                  
+                  <stringProp name="Argument.value">{"email":"${user_email}","password":"${user_password}"}</stringProp>
+                  
+                  
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/login</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor - Token" enabled="true">
+              
+              
+              <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.token</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
+              
+            
+            </JSONPostProcessor>
+            
+            
+            <hashTree/>
+            
+            
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor - UserID" enabled="true">
+              
+              
+              <stringProp name="JSONPostProcessor.referenceNames">userId</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.user.id</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
+              
+            
+            </JSONPostProcessor>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Token Exists" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="110541305">"token"</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Login Message" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1530931215">Login successful</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (2-4s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">3000</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">1000.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_02_Get_Profile" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /api/users/me" enabled="true">
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              
+              
+              <collectionProp name="Arguments.arguments"/>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/users/me</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Auth Header" enabled="true">
+              
+              
+              <collectionProp name="HeaderManager.headers">
+                
+                
+                <elementProp name="" elementType="Header">
+                  
+                  
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  
+                  
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </HeaderManager>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert User Email" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="user_email_str">"email":"${user_email}"</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (1-2s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">1500</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_03_Update_Profile" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PUT /api/users/me" enabled="true">
+            
+            
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              
+              
+              <collectionProp name="Arguments.arguments">
+                
+                
+                <elementProp name="" elementType="HTTPArgument">
+                  
+                  
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  
+                  
+                  <stringProp name="Argument.value">{"name":"${user_name}","shipping_address":"${user_address}","phone":"${user_phone}"}</stringProp>
+                  
+                  
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/users/me</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">PUT</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Auth Header" enabled="true">
+              
+              
+              <collectionProp name="HeaderManager.headers">
+                
+                
+                <elementProp name="" elementType="Header">
+                  
+                  
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  
+                  
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </HeaderManager>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Profile Updated" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1817540292">Profile updated</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (3-6s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">4500</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">1500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_04_Browse_Products" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /api/products" enabled="true">
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              
+              
+              <collectionProp name="Arguments.arguments"/>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/products</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Products Found" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1077976085">"name"</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (4-8s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">6000</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">2000.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_05_Product_Detail" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /api/products/${product_id}" enabled="true">
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              
+              
+              <collectionProp name="Arguments.arguments"/>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/products/${product_id}</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Correct Product ID" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="prod_id_check">"id":${product_id}</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (4.5-9.5s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">7000</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">2500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_06_Add_To_Cart" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /api/cart" enabled="true">
+            
+            
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              
+              
+              <collectionProp name="Arguments.arguments">
+                
+                
+                <elementProp name="" elementType="HTTPArgument">
+                  
+                  
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  
+                  
+                  <stringProp name="Argument.value">{"id":${product_id},"name":"${product_name}","price":${product_price},"quantity":${quantity}}</stringProp>
+                  
+                  
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/cart</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Auth Header" enabled="true">
+              
+              
+              <collectionProp name="HeaderManager.headers">
+                
+                
+                <elementProp name="" elementType="Header">
+                  
+                  
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  
+                  
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </HeaderManager>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Added To Cart" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1876402377">Added to cart</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (1-2s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">1500</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_07_Get_Cart" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /api/cart" enabled="true">
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              
+              
+              <collectionProp name="Arguments.arguments"/>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/cart</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Auth Header" enabled="true">
+              
+              
+              <collectionProp name="HeaderManager.headers">
+                
+                
+                <elementProp name="" elementType="Header">
+                  
+                  
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  
+                  
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </HeaderManager>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Cart Contains Product" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="cart_prod_check">"id":${product_id}</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (1-2s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">1500</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_08_Checkout" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /api/checkout" enabled="true">
+            
+            
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              
+              
+              <collectionProp name="Arguments.arguments">
+                
+                
+                <elementProp name="" elementType="HTTPArgument">
+                  
+                  
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  
+                  
+                  <stringProp name="Argument.value">{"total_amount":${product_price},"shipping_address":"${user_address}"}</stringProp>
+                  
+                  
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/checkout</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Auth Header" enabled="true">
+              
+              
+              <collectionProp name="HeaderManager.headers">
+                
+                
+                <elementProp name="" elementType="Header">
+                  
+                  
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  
+                  
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </HeaderManager>
+            
+            
+            <hashTree/>
+            
+            
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor - OrderID" enabled="true">
+              
+              
+              <stringProp name="JSONPostProcessor.referenceNames">orderId</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.orderId</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
+              
+            
+            </JSONPostProcessor>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Checkout Successful" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1852033061">Checkout successful</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert OrderID Exists" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="order_id_field">"orderId"</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (2-4s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">3000</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">1000.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_09_Verify_Order" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /api/orders/${orderId}" enabled="true">
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              
+              
+              <collectionProp name="Arguments.arguments"/>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/orders/${orderId}</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Order ID Matches" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="order_verify_id">"id":${orderId}</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Order Status Pending" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1817812975">"status":"pending"</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (1-2s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">1000</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TG_02_Sudden_Spike_130VU" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <intProp name="LoopController.loops">-1</intProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${SPIKE_THREADS}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${SPIKE_RAMPUP}</stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">${SPIKE_DURATION}</stringProp>
+        <stringProp name="ThreadGroup.delay">${SPIKE_DELAY}</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_01_Login" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /api/login" enabled="true">
+            
+            
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              
+              
+              <collectionProp name="Arguments.arguments">
+                
+                
+                <elementProp name="" elementType="HTTPArgument">
+                  
+                  
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  
+                  
+                  <stringProp name="Argument.value">{"email":"${user_email}","password":"${user_password}"}</stringProp>
+                  
+                  
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/login</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor - Token" enabled="true">
+              
+              
+              <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.token</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
+              
+            
+            </JSONPostProcessor>
+            
+            
+            <hashTree/>
+            
+            
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor - UserID" enabled="true">
+              
+              
+              <stringProp name="JSONPostProcessor.referenceNames">userId</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.user.id</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
+              
+            
+            </JSONPostProcessor>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Token Exists" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="110541305">"token"</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Login Message" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1530931215">Login successful</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (2-4s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">3000</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">1000.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_02_Get_Profile" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /api/users/me" enabled="true">
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              
+              
+              <collectionProp name="Arguments.arguments"/>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/users/me</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Auth Header" enabled="true">
+              
+              
+              <collectionProp name="HeaderManager.headers">
+                
+                
+                <elementProp name="" elementType="Header">
+                  
+                  
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  
+                  
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </HeaderManager>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert User Email" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="user_email_str">"email":"${user_email}"</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (1-2s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">1500</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_03_Update_Profile" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PUT /api/users/me" enabled="true">
+            
+            
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              
+              
+              <collectionProp name="Arguments.arguments">
+                
+                
+                <elementProp name="" elementType="HTTPArgument">
+                  
+                  
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  
+                  
+                  <stringProp name="Argument.value">{"name":"${user_name}","shipping_address":"${user_address}","phone":"${user_phone}"}</stringProp>
+                  
+                  
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/users/me</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">PUT</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Auth Header" enabled="true">
+              
+              
+              <collectionProp name="HeaderManager.headers">
+                
+                
+                <elementProp name="" elementType="Header">
+                  
+                  
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  
+                  
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </HeaderManager>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Profile Updated" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1817540292">Profile updated</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (3-6s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">4500</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">1500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_04_Browse_Products" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /api/products" enabled="true">
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              
+              
+              <collectionProp name="Arguments.arguments"/>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/products</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Products Found" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1077976085">"name"</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (4-8s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">6000</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">2000.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_05_Product_Detail" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /api/products/${product_id}" enabled="true">
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              
+              
+              <collectionProp name="Arguments.arguments"/>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/products/${product_id}</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Correct Product ID" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="prod_id_check">"id":${product_id}</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (4.5-9.5s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">7000</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">2500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_06_Add_To_Cart" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /api/cart" enabled="true">
+            
+            
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              
+              
+              <collectionProp name="Arguments.arguments">
+                
+                
+                <elementProp name="" elementType="HTTPArgument">
+                  
+                  
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  
+                  
+                  <stringProp name="Argument.value">{"id":${product_id},"name":"${product_name}","price":${product_price},"quantity":${quantity}}</stringProp>
+                  
+                  
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/cart</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Auth Header" enabled="true">
+              
+              
+              <collectionProp name="HeaderManager.headers">
+                
+                
+                <elementProp name="" elementType="Header">
+                  
+                  
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  
+                  
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </HeaderManager>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Added To Cart" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1876402377">Added to cart</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (1-2s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">1500</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_07_Get_Cart" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /api/cart" enabled="true">
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              
+              
+              <collectionProp name="Arguments.arguments"/>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/cart</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Auth Header" enabled="true">
+              
+              
+              <collectionProp name="HeaderManager.headers">
+                
+                
+                <elementProp name="" elementType="Header">
+                  
+                  
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  
+                  
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </HeaderManager>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Cart Contains Product" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="cart_prod_check">"id":${product_id}</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (1-2s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">1500</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_08_Checkout" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /api/checkout" enabled="true">
+            
+            
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              
+              
+              <collectionProp name="Arguments.arguments">
+                
+                
+                <elementProp name="" elementType="HTTPArgument">
+                  
+                  
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  
+                  
+                  <stringProp name="Argument.value">{"total_amount":${product_price},"shipping_address":"${user_address}"}</stringProp>
+                  
+                  
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/checkout</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Auth Header" enabled="true">
+              
+              
+              <collectionProp name="HeaderManager.headers">
+                
+                
+                <elementProp name="" elementType="Header">
+                  
+                  
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  
+                  
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                  
+                
+                </elementProp>
+                
+              
+              </collectionProp>
+              
+            
+            </HeaderManager>
+            
+            
+            <hashTree/>
+            
+            
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor - OrderID" enabled="true">
+              
+              
+              <stringProp name="JSONPostProcessor.referenceNames">orderId</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.orderId</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+              
+              
+              <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
+              
+            
+            </JSONPostProcessor>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Checkout Successful" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1852033061">Checkout successful</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert OrderID Exists" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="order_id_field">"orderId"</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (2-4s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">3000</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">1000.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="TC_09_Verify_Order" enabled="true">
+          
+          
+          <boolProp name="TransactionController.parent">true</boolProp>
+          
+          
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          
+        
+        </TransactionController>
+        
+        
+        <hashTree>
+          
+          
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /api/orders/${orderId}" enabled="true">
+            
+            
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              
+              
+              <collectionProp name="Arguments.arguments"/>
+              
+            
+            </elementProp>
+            
+            
+            <stringProp name="HTTPSampler.path">/api/orders/${orderId}</stringProp>
+            
+            
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            
+            
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            
+            
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            
+          
+          </HTTPSamplerProxy>
+          
+          
+          <hashTree>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert HTTP 200" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="49586">200</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">8</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Order ID Matches" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="order_verify_id">"id":${orderId}</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Order Status Pending" enabled="true">
+              
+              
+              <collectionProp name="Asserion.test_strings">
+                
+                
+                <stringProp name="1817812975">"status":"pending"</stringProp>
+                
+              
+              </collectionProp>
+              
+              
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              
+              
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              
+              
+              <intProp name="Assertion.test_type">16</intProp>
+              
+            
+            </ResponseAssertion>
+            
+            
+            <hashTree/>
+            
+            
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Think Time (1-2s)" enabled="true">
+              
+              
+              <stringProp name="ConstantTimer.delay">1000</stringProp>
+              
+              
+              <stringProp name="RandomTimer.range">500.0</stringProp>
+              
+            
+            </GaussianRandomTimer>
+            
+            
+            <hashTree/>
+            
+          
+          </hashTree>
+          
+        
+        </hashTree>
+        
+
+        
+      </hashTree>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <stringProp name="filename"/>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <stringProp name="filename"/>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results (Spike Trend Visualizer)" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <stringProp name="filename"/>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <stringProp name="filename"/>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree (Debug Only - Disabled)" enabled="false">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <stringProp name="filename"/>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
