@@ -1,6 +1,6 @@
 # Báo Cáo Nghiệm Thu & Đánh Giá Toàn Diện Agent Skill: jmeter-performance-engineering
 ## Assignment: HW05 – Performance Testing (Criteria 6: Agent Skills)
-**Sinh viên thực hiện:** Vũ Đình Hùng  
+**Sinh viên thực hiện:** Vũ Quốc Hùng  
 **MSSV:** 23120268  
 **Tên Agent Skill:** `jmeter-performance-engineering`  
 **Vị trí triển khai:** [`agent-skills/jmeter-performance-engineering/`](./jmeter-performance-engineering/)  
